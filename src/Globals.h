@@ -10,13 +10,15 @@
 #ifndef Globals_h
 #define Globals_h
 
-#include <stdio.h>
+#include <cstdio>
 #include <string>
 #include <sstream>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <GL/glew.h>
+#include "stb_image.h"
+#include <SFML/Window.hpp>
 
 
 #endif /* Globals_h */

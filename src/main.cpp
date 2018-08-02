@@ -5,6 +5,7 @@
 #include "Mesh.h"
 #include "ResourceManager.hpp"
 #include <SFML/Window.hpp>
+#include <cstdlib>
 
 const GLint WIDTH = 800, HEIGHT = 600;
 

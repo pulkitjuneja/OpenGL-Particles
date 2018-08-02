@@ -22,7 +22,7 @@ void Mesh::setupMesh() {
 }
 
 void Mesh::Draw() {
-    shader.use();
+    mat.shader->use();
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }

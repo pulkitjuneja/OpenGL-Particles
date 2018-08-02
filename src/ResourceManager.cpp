@@ -1,4 +1,5 @@
 #include <map>
+#include <cstring>
 #include "Globals.h"
 #include "ResourceManager.hpp"
 
@@ -15,9 +16,7 @@ void ResourceManager::readFromFile(const std::string &fileName, char *&shaderCon
     strcpy(shaderContent, &buffer.str()[0]);
 }
 
-ResourceManager::ResourceManager() {
-
-}
+ResourceManager::ResourceManager() {}
 
  ResourceManager* ResourceManager::getInstance() {
     if (instance == nullptr) {
@@ -71,10 +70,40 @@ void ResourceManager::loadShader(const std::string &vertexShaderPath, const std:
     
 }
 
+
+
 Shader* ResourceManager::getShader(const std::string &shaderName) {
     if (loadedShaders.count(shaderName) == 0) {
         string debugShaderName = "defaultShader";
         return loadedShaders [debugShaderName];
     }
     return loadedShaders [shaderName];
+}
+
+void ResourceManager::loadTexture(const string &texturePath, int &width, int &height, int &nrChannels, const string &textureName) {
+    {
+        GLuint texture;
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+// set the texture wrapping/filtering options (on the currently bound texture object)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        unsigned char* data = stbi_load(texturePath.c_str(), &width, &height, &nrChannels, 0);
+
+        if (data)
+        {
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            glGenerateMipmap(GL_TEXTURE_2D);
+            textures.insert(pair<string,GLuint&>(textureName, texture));
+        }
+        else
+        {
+            std::cout << "Failed to load texture" << std::endl;
+        }
+        stbi_image_free(data);
+
+    }
 }
