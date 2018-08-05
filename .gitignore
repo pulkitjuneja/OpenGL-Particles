@@ -9,6 +9,7 @@ cmake-build-debug/
 Makefile
 *.cbp
 CMakeFiles
+CmakeCache.txt
 
 #outputs
 *.a
