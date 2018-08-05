@@ -1,3 +1,4 @@
+#pragma once
 #ifndef Shader_h
 #define Shader_h
 
@@ -10,7 +11,6 @@ class Shader {
     GLuint shaderProgram;
     string shaderName;
 public:
-    Shader (const string &vertexShaderPath, const string &fragmentShaderPath, string &shaderName);
     Shader (const GLuint shaderProgram, const string &shaderName);
     void use();
     void setBool(const string &name, bool value) const;

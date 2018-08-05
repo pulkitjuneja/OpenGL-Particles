@@ -1,9 +1,9 @@
 #include "Globals.h"
 #include "Mesh.h"
 
-Mesh::Mesh(std::vector<float> &vertices, std::vector<int> &indices, const Shader &shader)
-        :shader(shader) {
+Mesh::Mesh(std::vector<float> &vertices, std::vector<int> &indices, Material* mat) {
     this->vertices = vertices;
+    this->mat = mat;
     this->indices = indices;
     setupMesh();
 }
@@ -22,7 +22,7 @@ void Mesh::setupMesh() {
 }
 
 void Mesh::Draw() {
-    mat.shader->use();
+    mat->shader->use();
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }

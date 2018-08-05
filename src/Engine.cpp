@@ -3,7 +3,9 @@
 //
 
 #include "Engine.h"
+#include "ResourceManager.hpp"
 
+const GLint WIDTH = 800, HEIGHT = 600;
 
 
 void Engine::start() {
@@ -11,13 +13,13 @@ void Engine::start() {
     if(!setupSFML()) {
         isEngineRunning = false;
     }
-    if(init()) {
+    if(!init()) {
         isEngineRunning = false;
     }
     while (isEngineRunning) {
         sf::Event windowEvent;
 
-        while ( window.pollEvent( windowEvent ) )
+        while ( window->pollEvent( windowEvent ) )
         {
             switch ( windowEvent.type )
             {
@@ -34,11 +36,11 @@ void Engine::start() {
 
         render();
 
-        window.display( );
+        window->display( );
     }
 
     // perform shutdown steps
-    window.close();
+    window->close();
 }
 
 bool Engine::setupSFML() {
@@ -50,7 +52,7 @@ bool Engine::setupSFML() {
     settings.minorVersion = 3;
     settings.attributeFlags = sf::ContextSettings::Core;
 
-    window = sf::Window( sf::VideoMode( WIDTH, HEIGHT, 32 ), "OpenGL SFML", sf::Style::Titlebar | sf::Style::Close, settings );
+    window = new sf::Window( sf::VideoMode( WIDTH, HEIGHT, 32 ), "OpenGL SFML", sf::Style::Titlebar | sf::Style::Close, settings );
 
     glewExperimental = GL_TRUE;
 
@@ -59,4 +61,10 @@ bool Engine::setupSFML() {
         std::cout << "Failed to initialize GLEW" << std::endl;
         return false;
     }
+
+    // Load Default Shaders
+
+    ResourceManager::getInstance()->loadShader("Shaders/basic.vert", "Shaders/basic.frag", "defaultShader");
+
+  return true;
 }

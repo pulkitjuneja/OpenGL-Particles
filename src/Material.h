@@ -1,7 +1,4 @@
-//
-// Created by Pulkit Juneja on 28/07/18.
-//
-
+#pragma once
 #ifndef GLTESTBED_MATERIAL_H
 #define GLTESTBED_MATERIAL_H
 
@@ -10,11 +7,19 @@
 class Material {
 
 public:
-    Shader& shader;
-    GLuint& texture;
-    Material (Shader& shader, GLuint texture);
+    Shader* shader;
+    GLuint texture;
+    Material (Shader* shader, GLuint texture);
+    Material (Shader* shader);
+
 };
 
-Material::Material(Shader &shader, GLuint texture): texture(texture), shader(shader) {}
+inline Material::Material(Shader *shader, GLuint texture): texture(texture) {
+    this->shader = shader;
+}
+
+inline Material::Material(Shader *shader): texture(0) {
+    this->shader = shader;
+}
 
 #endif //GLTESTBED_MATERIAL_H

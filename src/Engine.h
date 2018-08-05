@@ -11,7 +11,7 @@
 class Engine {
 
 private:
-    sf::Window window;
+    sf::Window* window;
     bool isEngineRunning = true;
 
 public:

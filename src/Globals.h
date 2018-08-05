@@ -7,6 +7,7 @@
 //
 
 #pragma once
+
 #ifndef Globals_h
 #define Globals_h
 
@@ -19,6 +20,8 @@
 #include <GL/glew.h>
 #include "stb_image.h"
 #include <SFML/Window.hpp>
+#include <map>
+#include <cstring>
 
 
 #endif /* Globals_h */
