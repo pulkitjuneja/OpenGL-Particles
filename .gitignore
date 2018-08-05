@@ -2,4 +2,13 @@
 .idea
 .vscode
 *.xcodeproj
+
+#cmake
 cmake-build-debug/
+*.cmake
+Makefile
+*.cbp
+CMakeFiles
+
+#outputs
+*.a
