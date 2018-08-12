@@ -38,7 +38,7 @@ void ResourceManager::loadShader(const std::string &vertexShaderPath, const std:
     if (!success)
     {
         glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
-        std::cout << "ERROR" << shaderName <<"::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        std::cout << "ERROR " << shaderName <<"::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
     
     char* fragmentShaderSource;
@@ -49,7 +49,7 @@ void ResourceManager::loadShader(const std::string &vertexShaderPath, const std:
     if (!success)
     {
         glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
-        std::cout << "ERROR" << shaderName <<"::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+        std::cout << "ERROR " << shaderName <<"::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
     GLuint shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
@@ -63,12 +63,10 @@ void ResourceManager::loadShader(const std::string &vertexShaderPath, const std:
     
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
-    
+
     loadedShaders.insert(pair<string, Shader*>(shaderName, new Shader(shaderProgram, shaderName)));
     
 }
-
-
 
 Shader* ResourceManager::getShader(const std::string &shaderName) {
     if (loadedShaders.count(shaderName) == 0) {

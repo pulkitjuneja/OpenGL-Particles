@@ -17,7 +17,7 @@ add_Library(GlTestBed
         src/stb_image.h
         src/Material.h
         src/Engine.cpp src/Engine.h
-        src/Particle.cpp src/Particle.h)
+        src/Particle.cpp src/Particle.h src/ParticleManager.cpp src/ParticleManager.h)
 
 set(CMAKE_CXX_STANDARD 11)
 

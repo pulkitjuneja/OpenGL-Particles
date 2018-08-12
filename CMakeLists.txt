@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(GLParticles main.cpp ParticleWorld.cpp ParticleWorld.h)
 
 include_directories(GLTestBed/src)
-include_directories(GLTestBed/ext)
+include_directories(GLTestBed/ext/glm)
 
 include_directories(/usr/local/include)
 

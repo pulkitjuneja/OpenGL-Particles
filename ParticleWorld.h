@@ -4,11 +4,13 @@
 
 #include <Engine.h>
 #include <Mesh.h>
+#include <ParticleManager.h>
 
 class ParticleWorld : public Engine {
 
     std::vector<float> triangleVertices;
     std::vector<int> triangleIndices;
+    ParticleManager *manager;
     Mesh* triangleMesh;
 
 public:

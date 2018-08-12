@@ -1,28 +1,24 @@
 #include <ResourceManager.hpp>
+#include <ParticleManager.h>
 #include "ParticleWorld.h"
 
 bool ParticleWorld::init() {
 
-    triangleVertices = {
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.0f,  0.5f, 0.0f
-    };
+    ResourceManager::getInstance()->loadShader("Shaders/particle.vert","Shaders/particle.frag","particleShader");
 
-    triangleIndices = {1,2,3};
-
-    triangleMesh = new Mesh(triangleVertices, triangleIndices, new Material(
-         ResourceManager::getInstance()->getShader("defaultShader")));
+    manager = new ParticleManager("particleShader");
 
     return true;
 }
 
 void ParticleWorld::update() {
 
+    manager->update();
+
 }
 
 void ParticleWorld::render() {
-    triangleMesh->Draw();
+    manager->render();
 }
 
 

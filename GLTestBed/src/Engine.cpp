@@ -5,7 +5,7 @@
 #include "Engine.h"
 #include "ResourceManager.hpp"
 
-const GLint WIDTH = 800, HEIGHT = 600;
+const GLint WIDTH = 1024, HEIGHT = 768;
 
 
 void Engine::start() {
@@ -31,7 +31,7 @@ void Engine::start() {
 
         update();
 
-        glClearColor( 0.2f, 0.3f, 0.3f, 1.0f );
+        glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
         glClear( GL_COLOR_BUFFER_BIT );
 
         render();

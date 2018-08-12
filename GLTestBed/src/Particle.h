@@ -5,10 +5,20 @@
 #ifndef GLTESTBED_PARTICLE_H
 #define GLTESTBED_PARTICLE_H
 
+#include <glm/glm.hpp>
+#include "Globals.h"
+
 
 class Particle {
 public:
+    glm::vec4 position;
+    glm::vec3 velocity;
+    glm::vec4 color;
+    float life;
 
+    Particle(const glm::vec4 &position, const glm::vec3 &velocity, const glm::vec4 &color, float life);
+
+    Particle ();
 };
 
 
