@@ -12,9 +12,7 @@ bool ParticleWorld::init() {
 }
 
 void ParticleWorld::update() {
-
     manager->update();
-
 }
 
 void ParticleWorld::render() {

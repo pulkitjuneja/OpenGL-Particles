@@ -9,6 +9,7 @@
 #pragma once
 
 #ifndef Globals_h
+
 #define Globals_h
 
 #include <cstdio>
@@ -23,5 +24,6 @@
 #include <map>
 #include <cstring>
 
+extern std::string dpath;
 
 #endif /* Globals_h */
