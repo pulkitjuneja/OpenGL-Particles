@@ -5,11 +5,18 @@
 
 #cmake
 cmake-build-debug/
-*.cmake
-Makefile
-*.cbp
+CMakeCache.txt
 CMakeFiles
-CmakeCache.txt
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
 
 #outputs
 *.a
+*.build
+*.cbp
+Debug
