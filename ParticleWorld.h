@@ -8,10 +8,8 @@
 
 class ParticleWorld : public Engine {
 
-    std::vector<float> triangleVertices;
-    std::vector<int> triangleIndices;
     ParticleManager *manager;
-    Mesh* triangleMesh;
+    ParticleUpdater* updater;
 
 public:
 

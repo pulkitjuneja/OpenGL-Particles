@@ -15,25 +15,13 @@ std::vector<GLfloat> billBoardVertexData = std::vector<GLfloat>{
 };
 
 // somehow to make this function customizable
-void ParticleManager::update() {
-    int particleCount = 0;
-    for(std::vector<Particle*>::iterator it = particleContainer.begin(); it!=particleContainer.end(); it++){
-
-        particlePositionData.push_back((*it)->position.x);
-        particlePositionData.push_back((*it)->position.y);
-        particlePositionData.push_back((*it)->position.z);
-        particlePositionData.push_back((*it)->position.w);
-
-        particleColorData.push_back((*it)->color.r);
-        particleColorData.push_back((*it)->color.g);
-        particleColorData.push_back((*it)->color.b);
-        particleColorData.push_back((*it)->color.a);
-
-        particleCount++;
-    }
+ void ParticleManager::update() {
+     particleUpdater.update(particleContainer);
+     updateBuffers();
 }
 
-ParticleManager::ParticleManager(const std::string& shaderName) {
+ParticleManager::ParticleManager(const std::string& shaderName, ParticleUpdater &particleUpdater):
+particleUpdater(particleUpdater) {
     particleType = ParticleType::billboard;
     particleContainer = std::vector<Particle*>();
     particleContainer.reserve(maxParticles);
@@ -67,6 +55,7 @@ void ParticleManager::render() {
 
     particleShader->setMat4("VP",&viewProjectionMatrix[0][0]);
 
+    glBindVertexArray(VAO);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -82,7 +71,7 @@ void ParticleManager::render() {
 
     glBindBuffer(GL_ARRAY_BUFFER, vertexColorBuffer);
     glBufferData(GL_ARRAY_BUFFER,maxParticles*4* sizeof(GLfloat),NULL,GL_STREAM_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER,0,particleColorData.size()*4*sizeof(GLfloat),&particleColorData[0]);
+    glBufferSubData(GL_ARRAY_BUFFER,0,particleColorData.size()*sizeof(GLfloat),&particleColorData[0]);
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2,4,GL_FLOAT,GL_FALSE,0,(void*)0);
 
@@ -98,21 +87,35 @@ void ParticleManager::render() {
 }
 
 void ParticleManager::calculateViewProjectionMatrix() {
-    glm::vec3 position( 0, 0, -5 );
+    glm::vec3 position( 0, 0, -10 );
     glm::vec3 up(0,1,0);
     glm::vec3 direction(0,0,1); // Initial direction, facing the negative z direction
 
     viewMatrix = glm::lookAt(position, direction, up);
-    projectionMatrix = glm::perspective(glm::radians(45.0f),4.0f/3.0f, 0.1f, 100.0f);
+    projectionMatrix = glm::perspective(glm::radians(90.0f),4.0f/3.0f, 0.1f, 100.0f);
 
 }
 
 void ParticleManager::spawnInitial() {
-    for (int i = 0 ; i<100; i ++) {
-        Particle* p = new Particle();
-        p->position = glm::vec4(rand()%10,rand()%10,rand()%10, 1);
-        p->velocity = glm::vec3(0,0,0);
-        p->color = glm::vec4(rand()%256, rand()%256, rand()%256,1);
-        particleContainer.push_back(p);
+    srand(time(NULL));
+    particleContainer.clear();
+    particleUpdater.spawnInitial(particleContainer);
+    glGenVertexArrays(1, &VAO);
+}
+
+void ParticleManager::updateBuffers() {
+    particlePositionData.clear();
+    particleColorData.clear();
+    for(std::vector<Particle*>::iterator it = particleContainer.begin(); it!=particleContainer.end(); it++){
+
+        particlePositionData.push_back((*it)->position.x);
+        particlePositionData.push_back((*it)->position.y);
+        particlePositionData.push_back((*it)->position.z);
+        particlePositionData.push_back((*it)->size);
+
+        particleColorData.push_back((*it)->color.r);
+        particleColorData.push_back((*it)->color.g);
+        particleColorData.push_back((*it)->color.b);
+        particleColorData.push_back((*it)->color.a);
     }
 }

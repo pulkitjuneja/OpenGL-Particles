@@ -15,6 +15,7 @@ private:
     bool isEngineRunning = true;
 
 public:
+    static sf::Time deltaTime;
     virtual bool init () = 0 ;
     virtual void update() = 0;
     virtual void render () = 0;

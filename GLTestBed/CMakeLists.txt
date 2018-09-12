@@ -3,7 +3,11 @@ project(GlTestBed)
 
 set(CMAKE_CXX_STANDARD 11)
 
+include_directories(ext)
 include_directories(src)
+
+find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 
 add_Library(GlTestBed
         src/Globals.h
@@ -17,22 +21,14 @@ add_Library(GlTestBed
         src/stb_image.h
         src/Material.h
         src/Engine.cpp src/Engine.h
-        src/Particle.cpp src/Particle.h src/ParticleManager.cpp src/ParticleManager.h)
+        src/Particle.cpp src/Particle.h src/ParticleManager.cpp src/ParticleManager.h src/ParticleUpdater.h)
 
 set(CMAKE_CXX_STANDARD 11)
 
 if(APPLE)
-
-find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
-
 include_directories(/usr/local/include)
-include_directories(ext)
-
 target_link_libraries(GlTestBed
         /usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib
         /usr/local/Cellar/sfml/2.4.2_1/lib/libsfml-window.2.4.2.dylib
         /usr/local/Cellar/sfml/2.4.2_1/lib/libsfml-system.2.4.2.dylib)
-
-
 endif()

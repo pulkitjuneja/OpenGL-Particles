@@ -19,10 +19,12 @@ void main()
 	vec3 particleCenter_wordspace = xyzs.xyz;
 
 	vec3 vertexPosition_worldspace =
-		particleCenter_wordspace;
+		particleCenter_wordspace
+        	+ CameraRight_worldspace * squareVertices.x * particleSize
+        	+ CameraUp_worldspace * squareVertices.y * particleSize;
 
 	// Output position of the vertex
-	gl_Position = vec4(squareVertices.xyz,1);
+	gl_Position = VP * vec4(vertexPosition_worldspace, 1.0f);
 
 	particlecolor = color;
 }

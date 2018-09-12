@@ -1,12 +1,9 @@
-//
-// Created by Pulkit Juneja on 02/08/18.
-//
-
 #include "Engine.h"
 #include "ResourceManager.hpp"
 
-const GLint WIDTH = 1024, HEIGHT = 768;
+const GLint WIDTH = 1366, HEIGHT = 768;
 
+sf::Time Engine::deltaTime;
 
 void Engine::start() {
     // engine specific initializations
@@ -16,6 +13,7 @@ void Engine::start() {
     if(!init()) {
         isEngineRunning = false;
     }
+    sf::Clock clock;
     while (isEngineRunning) {
         sf::Event windowEvent;
 
@@ -28,7 +26,7 @@ void Engine::start() {
                     break;
             }
         }
-
+        deltaTime = clock.restart();
         update();
 
         glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );

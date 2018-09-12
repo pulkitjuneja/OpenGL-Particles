@@ -11,10 +11,10 @@
 
 class Particle {
 public:
-    glm::vec4 position;
+    glm::vec3 position;
     glm::vec3 velocity;
     glm::vec4 color;
-    float life;
+    float life, size;
 
     Particle(const glm::vec4 &position, const glm::vec3 &velocity, const glm::vec4 &color, float life);
 

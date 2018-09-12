@@ -1,13 +1,13 @@
 #include <ResourceManager.hpp>
 #include <ParticleManager.h>
 #include "ParticleWorld.h"
+#include "BurstParticleUpdater.h"
 
 bool ParticleWorld::init() {
 
     ResourceManager::getInstance()->loadShader("Shaders/particle.vert","Shaders/particle.frag","particleShader");
-
-    manager = new ParticleManager("particleShader");
-
+    updater = new BurstParticleUpdater();
+    manager = new ParticleManager("particleShader", *updater);
     return true;
 }
 

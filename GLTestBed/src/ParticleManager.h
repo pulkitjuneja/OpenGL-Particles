@@ -8,6 +8,7 @@
 #include <string>
 #include "Particle.h"
 #include "Shader.h"
+#include "ParticleUpdater.h"
 
 enum ParticleType {billboard, mesh};
 
@@ -16,8 +17,10 @@ class ParticleManager {
     const int maxParticles = 100000;
     std::vector<Particle*> particleContainer;
     Shader* particleShader;
+    GLuint VAO ;// VAO to encapsulate the vertex attribs of the particles
 
     ParticleType particleType;
+    ParticleUpdater &particleUpdater;
 
     // arrays to store the data to be streamed to the GPU
     std::vector<GLfloat> particlePositionData, particleColorData;
@@ -32,11 +35,11 @@ class ParticleManager {
     void calculateViewProjectionMatrix();
 
 public:
-    ParticleManager(const std::string& shaderName);
+    ParticleManager(const std::string& shaderName, ParticleUpdater &particleUpdater);
     virtual void update ();
     virtual void spawnInitial ();
     void render ();
-
+    void updateBuffers ();
 };
 
 #endif //GLPARTICLES_PARTICLEMANAGER_H
