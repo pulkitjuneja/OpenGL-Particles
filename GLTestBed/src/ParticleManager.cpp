@@ -16,11 +16,11 @@ std::vector<GLfloat> billBoardVertexData = std::vector<GLfloat>{
 
 // somehow to make this function customizable
  void ParticleManager::update() {
-     particleUpdater.update(particleContainer);
+     particleUpdater->update(particleContainer);
      updateBuffers();
 }
 
-ParticleManager::ParticleManager(const std::string& shaderName, ParticleUpdater &particleUpdater):
+ParticleManager::ParticleManager(const std::string& shaderName, ParticleUpdater *particleUpdater):
 particleUpdater(particleUpdater) {
     particleType = ParticleType::billboard;
     particleContainer = std::vector<Particle*>();
@@ -99,7 +99,7 @@ void ParticleManager::calculateViewProjectionMatrix() {
 void ParticleManager::spawnInitial() {
     srand(time(NULL));
     particleContainer.clear();
-    particleUpdater.spawnInitial(particleContainer);
+    particleUpdater->spawnInitial(particleContainer);
     glGenVertexArrays(1, &VAO);
 }
 

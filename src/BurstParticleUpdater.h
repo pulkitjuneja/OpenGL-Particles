@@ -9,6 +9,7 @@
 #include <ParticleUpdater.h>
 
 class BurstParticleUpdater : public ParticleUpdater {
+    float spawnTimer;
 public:
     void update (std::vector<Particle*> &particleContainer);
     void spawnInitial (std::vector<Particle*> &emptyContainer);

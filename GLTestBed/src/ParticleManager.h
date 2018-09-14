@@ -20,7 +20,7 @@ class ParticleManager {
     GLuint VAO ;// VAO to encapsulate the vertex attribs of the particles
 
     ParticleType particleType;
-    ParticleUpdater &particleUpdater;
+    ParticleUpdater *particleUpdater;
 
     // arrays to store the data to be streamed to the GPU
     std::vector<GLfloat> particlePositionData, particleColorData;
@@ -35,7 +35,7 @@ class ParticleManager {
     void calculateViewProjectionMatrix();
 
 public:
-    ParticleManager(const std::string& shaderName, ParticleUpdater &particleUpdater);
+    ParticleManager(const std::string& shaderName, ParticleUpdater *particleUpdater);
     virtual void update ();
     virtual void spawnInitial ();
     void render ();

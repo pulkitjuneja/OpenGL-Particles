@@ -8,8 +8,7 @@
 
 class ParticleWorld : public Engine {
 
-    ParticleManager *manager;
-    ParticleUpdater* updater;
+    std::vector<ParticleManager* > managers;
 
 public:
 

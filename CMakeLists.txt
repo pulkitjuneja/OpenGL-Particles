@@ -2,17 +2,17 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 11)
 project(GLParticles)
 
-include_directories(GLTestBed/src)
-include_directories(GLTestBed/ext/glm)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GLTestBed/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GLTestBed/ext/glm)
 
 add_subdirectory(GLTestBed)
 
 add_executable(GLParticles
-        main.cpp
-        ParticleWorld.cpp
-        ParticleWorld.h
-        BurstParticleUpdater.cpp
-        BurstParticleUpdater.h)
+        src/main.cpp
+        src/ParticleWorld.cpp
+        src/ParticleWorld.h
+        src/BurstParticleUpdater.cpp
+        src/BurstParticleUpdater.h src/SineWaveUpdater.cpp src/SineWaveUpdater.h)
 
 target_link_libraries(GLParticles
         GlTestBed)
