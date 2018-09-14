@@ -1,3 +1,3 @@
 Experimenting with OpenGL and GLTestBed's particle manager
 
-![Imgur](https://i.imgur.com/qbb4bgk.gif)
+<img src="sample.gif?raw=true" width="200px">
