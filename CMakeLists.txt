@@ -3,7 +3,6 @@ set(CMAKE_CXX_STANDARD 11)
 project(GLParticles)
 
 include_directories(GLTestBed/src)
-include_directories(/usr/local/include)
 include_directories(GLTestBed/ext/glm)
 
 add_subdirectory(GLTestBed)
@@ -19,5 +18,3 @@ target_link_libraries(GLParticles
         GlTestBed)
 
 SET(CMAKE_CXX_LINK_FLAGS "-framework OpenGL")
-
-

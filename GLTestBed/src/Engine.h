@@ -16,6 +16,7 @@ private:
 
 public:
     static sf::Time deltaTime;
+    static sf::Time timeSinceStart;
     virtual bool init () = 0 ;
     virtual void update() = 0;
     virtual void render () = 0;

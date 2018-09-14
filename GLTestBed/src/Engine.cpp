@@ -4,6 +4,7 @@
 const GLint WIDTH = 1366, HEIGHT = 768;
 
 sf::Time Engine::deltaTime;
+sf::Time Engine::timeSinceStart;
 
 void Engine::start() {
     // engine specific initializations
@@ -27,6 +28,7 @@ void Engine::start() {
             }
         }
         deltaTime = clock.restart();
+        timeSinceStart += deltaTime;
         update();
 
         glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
