@@ -5,10 +5,12 @@
 #include <Engine.h>
 #include <Mesh.h>
 #include <ParticleManager.h>
+#include <Camera.h>
 
 class ParticleWorld : public Engine {
 
     std::vector<ParticleManager* > managers;
+	Camera* camera;
 
 public:
 

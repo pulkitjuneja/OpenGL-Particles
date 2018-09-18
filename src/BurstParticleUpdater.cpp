@@ -34,7 +34,7 @@ void BurstParticleUpdater::spawnEveryFrame(std::vector<Particle *> &particleCont
         for (int i = 0; i < 1000; i++) {
             Particle *p = new Particle();
             p->position = glm::vec3(posx, posy, 0);
-            p->size = get_random() * 0.3f;
+			p->size = 0.07f;
             p->color = glm::vec4(get_random(), get_random(), get_random(), 1);
             p->velocity = glm::vec3(-0.5 + get_random() * 1, get_random() * 5, 0);
             p->life = 5;

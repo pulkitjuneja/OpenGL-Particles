@@ -6,12 +6,12 @@
 #include <Engine.h>
 
 void SineWaveUpdater::spawnInitial(std::vector<Particle *> &emptyContainer) {
-    for(float i = -100; i<=100;i=i+0.25f) {
+    for(float i = -100; i<=100;i=i+0.1f) {
         Particle *p = new Particle();
         p->position = glm::vec3(i,yPivot,0);
         p->color = glm::vec4((p->position.x/100+1)/2,p->position.y,(p->position.z/10+1)/2,1);
         p->velocity = glm::vec3(0,0,0);
-        p->size = 0.3f;
+        p->size = 0.07f;
         emptyContainer.push_back(p);
     }
 }

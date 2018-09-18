@@ -4,7 +4,6 @@
 
 #include "ParticleManager.h"
 #include "ResourceManager.hpp"
-#include <glm/gtc/matrix_transform.hpp>
 #include <string>
 
 std::vector<GLfloat> billBoardVertexData = std::vector<GLfloat>{
@@ -55,35 +54,38 @@ void ParticleManager::render() {
 
     particleShader->setMat4("VP",&viewProjectionMatrix[0][0]);
 
-    glBindVertexArray(VAO);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	if (particlePositionData.size() > 0) {
 
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,(void*)0);
+		glBindVertexArray(VAO);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glBindBuffer(GL_ARRAY_BUFFER, vertexPositionBuffer);
-    glBufferData(GL_ARRAY_BUFFER,maxParticles*4* sizeof(GLfloat),NULL,GL_STREAM_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER,0,particlePositionData.size()*sizeof(GLfloat),&particlePositionData[0]);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1,4,GL_FLOAT,GL_FALSE,0,(void*)0);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, vertexColorBuffer);
-    glBufferData(GL_ARRAY_BUFFER,maxParticles*4* sizeof(GLfloat),NULL,GL_STREAM_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER,0,particleColorData.size()*sizeof(GLfloat),&particleColorData[0]);
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2,4,GL_FLOAT,GL_FALSE,0,(void*)0);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexPositionBuffer);
+		glBufferData(GL_ARRAY_BUFFER, maxParticles * 4 * sizeof(GLfloat), NULL, GL_STREAM_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, particlePositionData.size() * sizeof(GLfloat), &particlePositionData.front());
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-    glVertexAttribDivisor(0, 0);
-    glVertexAttribDivisor(1, 1);
-    glVertexAttribDivisor(2, 1);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexColorBuffer);
+		glBufferData(GL_ARRAY_BUFFER, maxParticles * 4 * sizeof(GLfloat), NULL, GL_STREAM_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, particleColorData.size() * sizeof(GLfloat), &particleColorData.front());
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, (GLuint)particleContainer.size());
+		glVertexAttribDivisor(0, 0);
+		glVertexAttribDivisor(1, 1);
+		glVertexAttribDivisor(2, 1);
 
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
-    glDisableVertexAttribArray(2);
+		glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, (GLuint)particleContainer.size());
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
+	}
 }
 
 void ParticleManager::calculateViewProjectionMatrix() {

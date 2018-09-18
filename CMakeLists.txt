@@ -17,4 +17,4 @@ add_executable(GLParticles
 target_link_libraries(GLParticles
         GlTestBed)
 
-SET(CMAKE_CXX_LINK_FLAGS "-framework OpenGL")
+# SET(CMAKE_CXX_LINK_FLAGS "-framework OpenGL")

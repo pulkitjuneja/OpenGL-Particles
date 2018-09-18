@@ -1,6 +1,7 @@
 #Editors
 .idea
 .vscode
+.vs
 *.xcodeproj
 
 #cmake
@@ -17,6 +18,8 @@ CTestTestfile.cmake
 
 #outputs
 *.a
+build
+*.lib
 *.build
 *.cbp
 Debug

@@ -4,6 +4,6 @@
 string dpath;
 int main (int argc, char* argv[]) {
     ParticleWorld world;
-    dpath = std::string("/Users/pulkitjuneja/Documents/projects/OpenGLTest/");
+    dpath = std::string("F:/Projects/OpenGL-Particles/");
     world.start();
 }
