@@ -6,7 +6,6 @@
 
 bool ParticleWorld::init() {
     ResourceManager::getInstance()->loadShader("Shaders/particle.vert","Shaders/particle.frag","particleShader");
-	camera = new Camera(glm::vec3(0, 0, -10), glm::vec3(0, 0, 1));
     managers.push_back(new ParticleManager("particleShader", new SineWaveUpdater(0)));
     managers.push_back(new ParticleManager("particleShader", new SineWaveUpdater(10)));
 	managers.push_back(new ParticleManager("particleShader", new BurstParticleUpdater()));

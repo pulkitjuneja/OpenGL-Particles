@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 11)
 project(GLParticles)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GLTestBed/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GLTestBed/ext/glm)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GlCore/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GlCore/ext/glm)
 
-add_subdirectory(GLTestBed)
+add_subdirectory(GlCore)
 
 add_executable(GLParticles
         src/main.cpp
