@@ -1,3 +1,3 @@
-Experimenting with OpenGL and GLTestBed's particle manager
+Experimenting with OpenGL and [glCore](https://github.com/pulkitjuneja/GlCore) particle manager
 
 <img src="sample.gif?raw=true" width="400px">
